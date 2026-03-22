@@ -1,0 +1,161 @@
+#include <stdio.h>
+
+void main(void)
+{
+    FILE *archivo;
+    int num;
+
+    archivo = fopen("datos.txt", "w"); // abrir en modo escritura
+
+    if (archivo == NULL)
+    {
+        printf("Error al abrir el archivo\n");
+    }
+    else
+    {
+        printf("Ingrese 5 numeros:\n");
+
+        for(int i = 0; i < 5; i++)
+        {
+            scanf("%d", &num);
+            fprintf(archivo, "%d\n", num);
+        }
+
+        fclose(archivo);
+        printf("Datos guardados correctamente\n");
+    }
+}
+
+#include <stdio.h>
+
+void main(void)
+{
+    FILE *archivo;
+    int num;
+
+    archivo = fopen("datos.txt", "r"); // modo lectura
+
+    if (archivo == NULL)
+    {
+        printf("Error al abrir el archivo\n");
+    }
+    else
+    {
+        printf("Contenido del archivo:\n");
+
+        while (fscanf(archivo, "%d", &num) != EOF)
+        {
+            printf("%d\n", num);
+        }
+
+        fclose(archivo);
+    }
+}
+
+#include <stdio.h>
+
+struct Alumno
+{
+    int matricula;
+    float promedio;
+};
+
+void main(void)
+{
+    FILE *archivo;
+    struct Alumno a;
+
+    archivo = fopen("alumnos.txt", "w");
+
+    if (archivo == NULL)
+    {
+        printf("Error al abrir archivo\n");
+    }
+    else
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            printf("Matricula: ");
+            scanf("%d", &a.matricula);
+
+            printf("Promedio: ");
+            scanf("%f", &a.promedio);
+
+            fprintf(archivo, "%d %.2f\n", a.matricula, a.promedio);
+        }
+
+        fclose(archivo);
+    }
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define N 20  // cantidad de números
+
+// Función de comparación para qsort
+int comparar(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+int main() {
+    FILE *archivo;
+    int i;
+
+    // 1. Crear archivo con números aleatorios
+    archivo = fopen("numeros.txt", "w");
+    if (archivo == NULL) {
+        printf("Error al crear el archivo\n");
+        return 1;
+    }
+
+    srand(time(NULL));
+    for (i = 0; i < N; i++) {
+        int num = rand() % 100; // números entre 0 y 99
+        fprintf(archivo, "%d\n", num);
+    }
+    fclose(archivo);
+
+    // 2. Leer números usando memoria dinámica
+    archivo = fopen("numeros.txt", "r");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo\n");
+        return 1;
+    }
+
+    int *numeros = (int*) malloc(N * sizeof(int));
+    if (numeros == NULL) {
+        printf("Error de memoria\n");
+        return 1;
+    }
+
+    for (i = 0; i < N; i++) {
+        fscanf(archivo, "%d", &numeros[i]);
+    }
+    fclose(archivo);
+
+    // 3. Ordenar los números
+    qsort(numeros, N, sizeof(int), comparar);
+
+    // 4. Guardar los números ordenados en otro archivo
+    archivo = fopen("ordenados.txt", "w");
+    if (archivo == NULL) {
+        printf("Error al crear el archivo de salida\n");
+        free(numeros);
+        return 1;
+    }
+
+    for (i = 0; i < N; i++) {
+        fprintf(archivo, "%d\n", numeros[i]);
+    }
+
+    fclose(archivo);
+
+    // Liberar memoria
+    free(numeros);
+
+    printf("Proceso completado. Revisa 'numeros.txt' y 'ordenados.txt'\n");
+
+    return 0;
+}
