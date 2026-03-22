@@ -1,0 +1,124 @@
+1. Lenguajes formales y gramáticas
+Un lenguaje formal es un conjunto de cadenas (palabras) formadas a partir de un alfabeto.
+Se describen mediante gramáticas, que definen reglas para generar cadenas válidas.
+Una gramática está compuesta por:
+Símbolos terminales (lo que aparece en el lenguaje)
+Símbolos no terminales (variables)
+Reglas de producción
+Símbolo inicial
+
+También se clasifican las gramáticas según su complejidad (jerarquía de Chomsky).
+
+🔹 2. Representación de gramáticas
+Las gramáticas pueden representarse mediante:
+Reglas formales
+Árboles de derivación
+Notación BNF (Backus-Naur Form)
+
+Esto permite visualizar cómo se generan las cadenas paso a paso.
+
+🔹 3. Autómatas finitos
+Son modelos matemáticos que reconocen lenguajes.
+Se componen de:
+Estados
+Transiciones
+Estado inicial
+Estados de aceptación
+
+Tipos:
+
+AFD (determinísticos): una sola transición por símbolo.
+AFN (no determinísticos): pueden tener varias opciones.
+
+También se explica cómo convertir un AFN a AFD.
+
+🔹 4. Máquinas de estado finito
+Son equivalentes a los autómatas finitos.
+Se utilizan para modelar sistemas con estados y transiciones.
+Ejemplo: sistemas electrónicos, protocolos, programas.
+🔹 5. Máquinas de Turing
+Modelo más potente de computación.
+Puede resolver problemas más complejos que los autómatas.
+Sirve como base de la teoría de la computación.
+🔹 6. Teoría de la computabilidad
+Estudia qué problemas pueden resolverse con algoritmos.
+Introduce la teoría de la complejidad, que analiza qué tan eficiente es un algoritmo.
+🔹 7. Aplicaciones
+
+Los lenguajes formales se usan en:
+
+Lenguajes de programación
+Compiladores
+Diseño de software
+Inteligencia artificial
+✅ Ejemplo de uso de lenguajes formales
+
+👉 Ejemplo sencillo:
+
+Alfabeto:
+Σ = {a, b}
+
+Lenguaje:
+L = { cadenas que empiezan con "a" }
+
+Gramática:
+
+S → aA
+A → aA | bA | ε
+
+✔ Cadenas válidas:
+
+a
+ab
+aab
+abb
+
+✔ Cadenas inválidas:
+
+b
+ba
+
+👉 Uso real:
+Este tipo de lenguaje se usa en:
+
+Validación de datos (ej: que un código empiece con cierto carácter)
+Compiladores para verificar sintaxis
+✅ Ejemplo de máquina de estado (finito)
+
+👉 Problema: reconocer cadenas que terminan en "ab"
+
+Estados:
+q0: inicio
+q1: se leyó "a"
+q2: se reconoce "ab" (aceptación)
+Transiciones:
+q0 → a → q1
+q0 → b → q0
+q1 → a → q1
+q1 → b → q2
+q2 → a → q1
+q2 → b → q0
+Explicación:
+La máquina lee la cadena símbolo por símbolo.
+Si termina en estado q2 → la cadena es válida.
+
+✔ Ejemplos válidos:
+
+ab
+aab
+bbab
+
+❌ No válidos:
+
+aba
+bba
+
+👉 Esto representa exactamente lo que describe el capítulo sobre máquinas de estado y autómatas.
+
+🧠 En resumen (más corto para estudiar)
+Lenguajes formales → conjuntos de cadenas
+Gramáticas → reglas para generarlas
+Autómatas → máquinas que las reconocen
+Máquinas de estado → modelo práctico
+Máquina de Turing → modelo más potente
+Todo esto es base de la programación
