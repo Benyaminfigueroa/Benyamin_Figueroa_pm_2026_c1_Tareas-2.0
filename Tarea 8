@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    float valorInicial, valorFinal;
+    int meses, opcion;
+
+    printf("CALCULO DE DEPRECIACION DE VEHICULOS\n");
+    printf("1. Valor inicial, valor final y tiempo\n");
+    printf("2. Valor inicial y tiempo (valor final = 0)\n");
+    printf("Seleccione opcion: ");
+    scanf("%d", &opcion);
+
+    if (opcion == 1) {
+        printf("Ingrese valor inicial: ");
+        scanf("%f", &valorInicial);
+        printf("Ingrese valor final: ");
+        scanf("%f", &valorFinal);
+        printf("Ingrese tiempo en meses: ");
+        scanf("%d", &meses);
+    } else {
+        printf("Ingrese valor inicial: ");
+        scanf("%f", &valorInicial);
+        valorFinal = 0;
+        printf("Ingrese tiempo en meses: ");
+        scanf("%d", &meses);
+    }
+
+    FILE *archivo = fopen("amortizacion.txt", "w");
+    if (archivo == NULL) {
+        printf("Error al crear archivo\n");
+        return 1;
+    }
+
+    float depreciacionMensual = (valorInicial - valorFinal) / meses;
+    float valorActual = valorInicial;
+
+    fprintf(archivo, "TABLA DE AMORTIZACION\n");
+    fprintf(archivo, "Mes\tValor Inicial\tDepreciacion\tValor Final\n");
+
+    for (int i = 1; i <= meses; i++) {
+        float valorInicioMes = valorActual;
+        valorActual -= depreciacionMensual;
+
+        fprintf(archivo, "%d\t%.2f\t\t%.2f\t\t%.2f\n",
+                i, valorInicioMes, depreciacionMensual, valorActual);
+    }
+
+    fclose(archivo);
+
+TABLA DE AMORTIZACION
+Mes    Valor Inicial    Depreciacion    Valor Final
+1      10000.00         500.00          9500.00
+2      9500.00          500.00          9000.00
+...
+
+    printf("Tabla generada en 'amortizacion.txt'\n");
+
+    return 0;
+}
