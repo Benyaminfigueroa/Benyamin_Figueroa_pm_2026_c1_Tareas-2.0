@@ -1,0 +1,113 @@
+Capítulo 6: Relaciones (Resumen)
+
+Este capítulo introduce las relaciones matemáticas, fundamentales en computación (bases de datos, estructuras de datos, programación).
+
+🔹 Conceptos básicos
+Una relación es un conjunto de pares ordenados entre elementos de dos conjuntos.
+Se construye a partir del producto cartesiano.
+Puede representarse de varias formas:
+Pares ordenados
+Tablas
+Matrices
+Grafos
+🔹 Tipos de relaciones
+Reflexiva: todo elemento se relaciona consigo mismo.
+Irreflexiva: ningún elemento se relaciona consigo mismo.
+Simétrica: si (a,b), entonces (b,a).
+Asimétrica: si (a,b), entonces no (b,a).
+Antisimétrica: si (a,b) y (b,a), entonces a = b.
+Transitiva: si (a,b) y (b,c), entonces (a,c).
+🔹 Relaciones de equivalencia
+Cumplen: reflexiva, simétrica y transitiva.
+Generan:
+Clases de equivalencia
+Particiones de conjuntos
+🔹 Operaciones con relaciones
+Unión, intersección, composición.
+Cerraduras (transitiva, reflexiva, etc.).
+🔹 Diagramas de Hasse
+Representan relaciones de orden parcial.
+Eliminan redundancias para simplificar visualización.
+🔹 Funciones
+Caso especial de relación.
+Cada elemento del dominio tiene una única imagen.
+Tipos:
+Inyectiva
+Sobreyectiva
+Biyectiva
+Incluye composición e inversas.
+🔹 Aplicaciones
+Bases de datos
+Listas enlazadas
+Programación
+📘 Capítulo 7: Grafos (Resumen)
+
+Los grafos representan estructuras de conexión como redes (internet, rutas, etc.).
+
+🔹 Concepto
+Un grafo está formado por:
+Vértices (nodos)
+Aristas (conexiones)
+🔹 Tipos de grafos
+Dirigidos / no dirigidos
+Ponderados (con pesos)
+Simples o multigrafos
+🔹 Representación
+Lista de adyacencia
+Matriz de adyacencia
+🔹 Caminos y circuitos
+Camino: secuencia de vértices conectados
+Circuito: camino cerrado
+Ejemplos famosos:
+Euler
+Hamilton
+🔹 Isomorfismo
+Dos grafos son iguales en estructura aunque se dibujen distinto.
+🔹 Grafos planos
+Se pueden dibujar sin que las aristas se crucen.
+🔹 Coloración de grafos
+Asignar colores a vértices sin repetir en adyacentes.
+Concepto clave:
+Número cromático
+🔹 Aplicaciones
+Rutas más cortas (algoritmo de Dijkstra)
+Redes de computadoras
+Reconocimiento de patrones
+📘 Capítulo 8: Árboles (Resumen)
+
+Los árboles son un tipo especial de grafo muy importante en computación.
+
+🔹 Concepto
+Grafo:
+No dirigido
+Conexo
+Sin ciclos
+🔹 Propiedades
+Si tiene n nodos → tiene n−1 aristas.
+Existe un único camino entre dos nodos.
+🔹 Tipos de árboles
+Según número de nodos
+Según altura
+Árboles binarios (máximo 2 hijos)
+🔹 Bosques
+Conjunto de árboles separados.
+🔹 Árboles con pesos
+Las aristas tienen valores (costos, distancias).
+🔹 Árboles generadores
+Subgrafo que conecta todos los nodos sin ciclos.
+Incluye:
+Árbol generador mínimo (optimización)
+🔹 Recorridos de árboles
+Preorden
+Inorden
+Postorden
+🔹 Búsquedas
+Búsqueda en anchura (BFS)
+Búsqueda en profundidad (DFS)
+🔹 Árboles de búsqueda binarios
+Permiten buscar datos eficientemente.
+Muy usados en programación.
+🔹 Aplicaciones
+Estructuras de datos
+Evaluación de expresiones
+Compresión (ej: Huffman)
