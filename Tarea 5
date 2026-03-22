@@ -1,0 +1,371 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char cad[50];
+    int i;
+
+    printf("Ingrese una cadena: ");
+    gets(cad);
+
+    for(i = 0; cad[i] != '\0'; i++) {
+        if(i % 2 != 0)
+            printf("%c", cad[i]);
+    }
+    return 0;
+}
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char cad[50];
+    int i;
+
+    printf("Ingrese cadena: ");
+    gets(cad);
+
+    for(i = 0; cad[i] != '\0'; i++) {
+        if(i % 2 == 0 && isdigit(cad[i]))
+            printf("%c", cad[i]);
+    }
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    char cad[50];
+    int i;
+
+    gets(cad);
+
+    for(i = 0; cad[i] != '\0'; i++) {
+        if(i % 2 == 0)
+            printf("%c", cad[i]);
+    }
+}
+
+#include <stdio.h>
+
+int main() {
+    char cad[50], c;
+    int i, cont = 0;
+
+    printf("Cadena: ");
+    gets(cad);
+
+    printf("Caracter: ");
+    scanf("%c", &c);
+
+    for(i = 0; cad[i] != '\0'; i++)
+        if(cad[i] == c)
+            cont++;
+
+    printf("Aparece %d veces", cont);
+}
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char cad[50];
+    int i, may=0, min=0, otros=0;
+
+    gets(cad);
+
+    for(i=0; cad[i]; i++){
+        if(isupper(cad[i])) may++;
+        else if(islower(cad[i])) min++;
+        else otros++;
+    }
+
+    printf("Mayus: %d\nMinus: %d\nOtros: %d", may, min, otros);
+}
+
+#include <stdio.h>
+
+int main() {
+    char cad[50];
+    int i=0, palabras=1;
+
+    gets(cad);
+
+    while(cad[i]){
+        if(cad[i]==' ' && cad[i+1]!=' ')
+            palabras++;
+        i++;
+    }
+
+    printf("Palabras: %d", palabras);
+}
+
+#include <stdio.h>
+
+int main() {
+    char cad[30];
+
+    printf("Ingrese numero: ");
+    gets(cad);
+
+    printf("(%c%c)-%c-%s", cad[0], cad[1], cad[2], &cad[3]);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char cad1[50], cad2[50];
+    char *p1, *p2;
+
+    printf("Cadena 1: ");
+    gets(cad1);
+    printf("Cadena 2: ");
+    gets(cad2);
+
+    p1 = strtok(cad1, " ");
+    p2 = strtok(cad2, " ");
+
+    while(p1 != NULL || p2 != NULL) {
+        if(p1 != NULL){
+            printf("%s ", p1);
+            p1 = strtok(NULL, " ");
+        }
+        if(p2 != NULL){
+            printf("%s ", p2);
+            p2 = strtok(NULL, " ");
+        }
+    }
+    return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char cad[50], *palabras[20];
+    int i = 0, j;
+
+    printf("Ingrese cadena: ");
+    gets(cad);
+
+    palabras[i] = strtok(cad, " ");
+    while(palabras[i] != NULL) {
+        i++;
+        palabras[i] = strtok(NULL, " ");
+    }
+
+    for(j = i-1; j >= 0; j--)
+        printf("%s ", palabras[j]);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char cad[50];
+    char fecha[] = "06/08/2005"; // ejemplo
+
+    char op = 'S';
+
+    while(op == 'S') {
+        printf("Ingrese cadena: ");
+        gets(cad);
+
+        if(strncmp(cad, fecha, 10) == 0)
+            printf("Coincide: %s\n", cad);
+
+        printf("Desea continuar? (S/N): ");
+        scanf(" %c", &op);
+        getchar();
+    }
+    return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int contarVocales(char *cad) {
+    int i, c=0;
+    for(i=0; cad[i]; i++)
+        if(strchr("aeiouAEIOU", cad[i]))
+            c++;
+    return c;
+}
+
+int main() {
+    char ARC[10][50];
+    int i, max=0, pos=0;
+
+    for(i=0;i<10;i++) {
+        gets(ARC[i]);
+        int v = contarVocales(ARC[i]);
+        if(v > max){
+            max = v;
+            pos = i;
+        }
+    }
+
+    printf("Mayor: %s", ARC[pos]);
+}
+
+#include <ctype.h>
+
+int contarMayus(char *cad){
+    int i,c=0;
+    for(i=0; cad[i]; i++)
+        if(isupper(cad[i]))
+            c++;
+    return c;
+}
+
+int contarPalabras(char *cad){
+    int i=0, c=0;
+
+    while(cad[i]){
+        if(cad[i]==' ' && cad[i+1]!=' ')
+            c++;
+        i++;
+    }
+    return c+1;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    char ARC[20][80];
+    int freq[20]={0};
+    int i;
+
+    for(i=0;i<20;i++){
+        gets(ARC[i]);
+        char *p = strtok(ARC[i], " ");
+        while(p){
+            freq[strlen(p)]++;
+            p = strtok(NULL," ");
+        }
+    }
+
+    for(i=1;i<20;i++)
+        printf("%d -> %d\n", i, freq[i]);
+}
+
+
+Capítulo 8
+
+void ventasTotales(vendedor A[], int n) {
+    for (int i = 0; i < n; i++) {
+        float suma = 0;
+        for (int j = 0; j < 12; j++)
+            suma += A[i].ven[j];
+
+        printf("\nVendedor %d - Total: %.2f", A[i].num, suma);
+    }
+}
+
+void incremento(vendedor A[], int n) {
+    for (int i = 0; i < n; i++) {
+        float suma = 0;
+        for (int j = 0; j < 12; j++)
+            suma += A[i].ven[j];
+
+        if (suma > 1500000) {
+            A[i].sal *= 1.05;
+            printf("\nVendedor %d nuevo salario: %.2f", A[i].num, A[i].sal);
+        }
+    }
+}
+
+void ventasBajas(vendedor A[], int n) {
+    for (int i = 0; i < n; i++) {
+        float suma = 0;
+        for (int j = 0; j < 12; j++)
+            suma += A[i].ven[j];
+
+        if (suma < 300000) {
+            printf("\n%d %s %.2f", A[i].num, A[i].nom, suma);
+        }
+    }
+}
+
+void procesar(producto A[], int n) {
+    char ope;
+    int cla, can;
+
+    printf("Operacion (C/V, 0 para salir): ");
+    scanf(" %c", &ope);
+
+    while (ope != '0') {
+        scanf("%d %d", &cla, &can);
+
+        int pos = buscar(A, n, cla);
+
+        if (pos != -1) {
+            if (ope == 'C')
+                A[pos].existencia += can;
+            else if (ope == 'V') {
+                if (A[pos].existencia >= can)
+                    A[pos].existencia -= can;
+                else
+                    printf("Stock insuficiente\n");
+            }
+        }
+
+        printf("Operacion: ");
+        scanf(" %c", &ope);
+    }
+}
+
+float promedioAlumno(alumno a) {
+    float suma = 0;
+    for (int i = 0; i < MAT; i++)
+        suma += a.cal[i].promedio;
+
+    return suma / MAT;
+}
+
+void listar(alumno A[], int n, char nivel[], int grado, char salon[]) {
+    for (int i = 0; i < n; i++) {
+        if (strcmp(A[i].nivel.nivel, nivel) == 0 &&
+            A[i].nivel.grado == grado &&
+            strcmp(A[i].nivel.salon, salon) == 0) {
+
+            printf("\n%d %s %.2f",
+                A[i].matricula,
+                A[i].nombre,
+                promedioAlumno(A[i]));
+        }
+    }
+}
+
+void mejorAlumno(alumno A[], int n, char nivel[], int grado, char salon[]) {
+    float mejor = -1;
+    int pos = -1;
+
+    for (int i = 0; i < n; i++) {
+        if (strcmp(A[i].nivel.nivel, nivel) == 0 &&
+            A[i].nivel.grado == grado &&
+            strcmp(A[i].nivel.salon, salon) == 0) {
+
+            float prom = promedioAlumno(A[i]);
+
+            if (prom > mejor) {
+                mejor = prom;
+                pos = i;
+            }
+        }
+    }
+
+    if (pos != -1) {
+        printf("\nMejor alumno:");
+        printf("\n%d %s %.2f",
+            A[pos].matricula,
+            A[pos].nombre,
+            mejor);
+    }
+}
